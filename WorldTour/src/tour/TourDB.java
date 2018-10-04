@@ -1,5 +1,10 @@
 package tour;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 관광지의 정보를 관리
  */
@@ -12,7 +17,7 @@ public class TourDB {
 	private int close;
 	//이미지
 	//주의사항들
-	
+
 	public TourDB() {}
 	/**
 	 * 이름만 추가하는 생성자
@@ -41,6 +46,7 @@ public class TourDB {
 	 */
 	public TourDB(String name, String address, int enterfee/*, int season*/, int close) {
 		this.name = name;
+		this.address = address;
 		this.enterfee = enterfee;
 //		this.season = season;
 		this.close = close;
@@ -65,8 +71,7 @@ public class TourDB {
 	public void setClose(int close) {
 		this.close = close;
 	}
-	
-	
+
 	/**
 	 * getter
 	 */
@@ -85,11 +90,16 @@ public class TourDB {
 	public int getClose() {
 		return close;
 	}
-	
 	@Override
 	public String toString() {
-		return "TourDB [name=" + name + ", address=" + address + ", enterfee=" + enterfee + "원, close=" + close + "시]";
+		return "TourDB [name=" + name + ", address=" + address + ", enterfee=" + enterfee + ", close=" + close + "]\n";
 	}
+
+	
+	
+	
+	
+	
 	
 	
 }

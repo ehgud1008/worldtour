@@ -3,6 +3,8 @@ package graphic;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -65,13 +67,8 @@ class Window extends JFrame{
 		
 		complete.addActionListener(e -> {
 			try {
-				tour.addList(new TourDB(name.getText(), address.getText(), Integer.parseInt(enterfee.getText()),
-						Integer.parseInt(close.getText())));
-//				tour.setName(name.getText());
-//				tour.setAddress(address.getText());
-//				tour.setEnterfee(Integer.parseInt(enterfee.getText()));
-////				tour.setSeason(Integer.parseInt(season.getText()));
-//				tour.setClose(Integer.parseInt(close.getText()));
+				tour.addList(new TourDB(name.getText(), address.getText(), 
+						Integer.parseInt(enterfee.getText()), Integer.parseInt(close.getText())));
 				tour.printList();
 			}catch(Exception ex) {
 				ex.printStackTrace();
