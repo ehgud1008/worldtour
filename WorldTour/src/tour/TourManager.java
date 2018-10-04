@@ -1,52 +1,33 @@
 package tour;
 
-/**
- * 관광지의 정보를 관리
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class TourManager {
-	private String name;
-	private int enterfee;
-	private int season;
-	private int close;
-	//이미지
-	//주의사항들
+
+	private List<TourDB> tourist = new ArrayList<>();
+//	private TourDB db = new TourDB();
+//	private Map<String, TourManager> tourist = new HashMap<>();
 	
-//	public TourManager(String name, int enterfee, int season, int close) {
-//		this.name = name;
-//		this.enterfee = enterfee;
-//		this.season = season;
-//		this.close = close;
-//	}
-//	
+	public void addList(TourDB t) {
+		tourist.add(t);
+	}
+
+	public void removeList(TourDB t) {
+		tourist.remove(t);
+	}
+
 	
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	public void setEnterfee(int enterfee) {
-		this.enterfee = enterfee;
-	}
-	public void setSeason(int season) {
-		this.season = season;
-	}
-	public void setClose(int close) {
-		this.close = close;
+	public void findList() {
+		
 	}
 	
-	
-	
-	public String getName() {
-		return name;
-	}
-	public int getEnterfee() {
-		return enterfee;
-	}
-	public int getSeason() {
-		return season;
-	}
-	public int getClose() {
-		return close;
+	public List<TourDB> getList() {
+		return tourist;
 	}
 	
+	public void printList() {
+		System.out.println(tourist.toString());
+	}
 	
 }
