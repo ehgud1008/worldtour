@@ -1,5 +1,7 @@
 package tour;
 
+import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.Map;
 /**
  * 관광지의 정보를 관리
  */
-public class TourDB {
+public class TourDB implements Serializable{
 //	private String nation;
 	private String name;
 	private String address;
@@ -16,6 +18,7 @@ public class TourDB {
 //	private int season;	//선택옵션
 	private int close;
 	//이미지
+	private BufferedImage image;
 	//주의사항들
 
 	public TourDB() {}
@@ -72,6 +75,13 @@ public class TourDB {
 		this.close = close;
 	}
 
+	
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+	
+	
+	
 	/**
 	 * getter
 	 */
@@ -90,6 +100,14 @@ public class TourDB {
 	public int getClose() {
 		return close;
 	}
+	
+	public BufferedImage getImage() {
+		return image;
+	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "TourDB [name=" + name + ", address=" + address + ", enterfee=" + enterfee + ", close=" + close + "]\n";
