@@ -1,4 +1,7 @@
 package tour;
+
+import java.util.Scanner;
+
 /** 
  * 검색, 추가, 삭제, 목록  모든 기능.
  * @author user
@@ -6,19 +9,16 @@ package tour;
  */
 public class Main {
 public static void main(String[] args) {
-	TourDB tourdb1 = new TourDB("남산", "서울", 500, 15);
-	TourDB tourdb2 = new TourDB("경복궁","서울",100,15);
-	TourDB tourdb3 = new TourDB("숭례문","서울",100,15);
-	
-
+	String city, address=null;
+	int enterfee, close=0;
 	TourManager2 tourmanager = new TourManager2();
-	tourmanager.addList(tourdb1);
-	tourmanager.addList(tourdb2);
-	tourmanager.printList();
-	tourmanager.removeList("남산");
-	tourmanager.printList();
-	tourmanager.removeList("숭례문");
-	tourmanager.printList();
+	System.out.println("입력 원하는 관광지를 입력하시오.");
+	Scanner input = new Scanner(System.in);
+	city=input.next();
+	tourmanager.addList(new TourDB(city));
+	
+	
+	
 	
 //	tourmanager.printList();
 //	tourmanager.removeList("남산");
