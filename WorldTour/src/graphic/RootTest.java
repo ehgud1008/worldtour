@@ -1,5 +1,6 @@
 package graphic;
 
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
 
 import tour.TourDB;
 import tour.TourManager;
+
 
 class Window extends JFrame{
 	private Container con = this.getContentPane();

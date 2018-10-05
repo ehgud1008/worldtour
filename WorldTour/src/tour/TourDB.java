@@ -5,11 +5,11 @@ package tour;
  */
 public class TourDB {
 //	private String nation;
-	private String name;
-	private String address;
-	private int enterfee;
+	private String name; //이름
+	private String address;//주소
+	private int enterfee;//입장료
 //	private int season;	//선택옵션
-	private int close;
+	private int close;//폐점시간
 	//이미지
 	//주의사항들
 	
@@ -42,6 +42,7 @@ public class TourDB {
 	public TourDB(String name, String address, int enterfee/*, int season*/, int close) {
 		this.name = name;
 		this.enterfee = enterfee;
+		this.address = address;
 //		this.season = season;
 		this.close = close;
 	}

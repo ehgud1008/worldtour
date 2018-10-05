@@ -5,7 +5,6 @@ import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import tour.TourManager;
 
@@ -32,7 +31,7 @@ class ClientWindow extends JFrame {
 	}
 
 	public void event() {
-		TourManager tour = new TourManager();
+		TourManager tour = new TourManager(); 
 
 		button.addActionListener(e -> {
 			tour.getList();
