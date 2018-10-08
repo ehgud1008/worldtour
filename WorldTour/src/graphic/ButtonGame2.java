@@ -2,6 +2,7 @@ package graphic;
 
 import java.awt.Button;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import tour.TourDB;
 import tour.TourManager3;
 
 public class ButtonGame2 extends JFrame{
@@ -24,18 +26,24 @@ public class ButtonGame2 extends JFrame{
 	private JPanel infopan = new JPanel();
 	
 	private JLabel label = new JLabel("메뉴에서 사이즈를 선택해주세요");
-	//private TourManager3 tourm = new TourManager3();
-
-//	private JButton [] button = new JButton[tourm.getName().length];
-	private Button [] button = new Button[9];
-
+	
 	private JMenuBar bar = new JMenuBar();
 	private JMenu sizemenu = new JMenu("사이즈");
 	private JMenuItem three = new JMenuItem("3x3");
 	private JMenuItem four = new JMenuItem("4x4");
 	private JMenuItem five = new JMenuItem("5x5");
+	private TourManager3 tourm = new TourManager3();
+//	private List<String> info = new ArrayList<>();
+//	private List <JButton> button = new ArrayList<>();
+//	private JButton [] button = new JButton[9];
+	private int size = 3;
 	
+	private JButton button1;
+	private JButton button2;
+	
+	private JButton [] button = new JButton[tourm.getName().length];
 //	private String [] info = new String [tourm.getName().length];
+//	private List <String> info = new ArrayList<>();
 	
 	public ButtonGame2() {
 		this.display();
@@ -48,38 +56,46 @@ public class ButtonGame2 extends JFrame{
 		
 	}
 
-//	public void button() {
-//		//만약 관광지 정보가 10개인데
-//		//버튼은 9개이면?
-////		List <String> info = new ArrayList<>();
-//		String [] info = new String[tourm.getName().length];
-//		info = tourm.getName();
-//		for(int i = 0; i < button.length; i++) {
-//			
-////			Collections.shuffle(info);
-//			button[i] = new JButton(info[i]);
-//			buttonpan.add(button[i]);
-//		}
-//	}
+	
 	public void display() {
 		//tourist의 0번째 인덱스들 
-		this.setLayout(new GridLayout(1,2));
-		this.add(buttonpan);
-		this.add(infopan);
-		buttonpan.setLayout(new GridLayout(3,3));//(tourm.getName().length/2,tourm.getName().length/2));
-		for(int i = 0; i < button.length; i++) {
-			button[i] = new Button(String.valueOf(i+1));
-//			button[i] = new Button(""+(i+1));
-			this.add(button[i]);
-		}
-		//button();
+		con.setLayout(new GridLayout(1,2));
+		con.add(buttonpan);
+		con.add(infopan);
+		buttonpan.setLayout(new GridLayout(tourm.getName().length/size,size));
+//		buttonpan.setLayout(new GridLayout(tourm.getName().length/size, size));
+//		buttonpan.setLayout(new FlowLayout());
+
 		
-//		String [] info = new String[tourm.getName().length];
-//		info = tourm.getName();
+		tourm.addList(new TourDB("남산", "서울", 15000, 21));
+		tourm.addList(new TourDB("경복궁", "서울", 10000, 20));
+		tourm.printList();
 //		for(int i = 0; i < button.length; i++) {
+//			button[i] = new JButton(String.valueOf(i+1));
+////			button[i] = new Button(""+(i+1));
+//			buttonpan.add(button[i]);
+//		}
+//		info.add(getName());
+//		
+//		for(int i = 0; i < button.size(); i++) {
+//			button.add(new JButton(info.get(i)));
+//			buttonpan.add(button.get(i));
+//			
+//		}
+		
+		for(int i = 0; i < button.length; i++) {
+			String [] info = new String[tourm.getName().length];
+			button[i] = new JButton(info[i]);
+			buttonpan.add(button[i]);
+		}
+		
+//		buttonpan.setLayout(new GridLayout(3, 3));
+//		
+//		for(int i = 0; i < button.length; i++) {
+//			button[i] = new JButton(String.valueOf(i+1));
 //			
 ////			Collections.shuffle(info);
-//			button[i] = new JButton(info[i]);
+////			button[i] = new JButton(info);
 //			buttonpan.add(button[i]);
 //		}
 		

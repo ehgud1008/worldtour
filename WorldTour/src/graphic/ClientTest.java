@@ -43,7 +43,7 @@ class ClientWindow extends JFrame {
 		TourManager tour = new TourManager();
 
 		button1.addActionListener(e -> {
-			ButtonGame buttongame = new ButtonGame();
+			ButtonGame2 buttongame = new ButtonGame2();
 			dispose();
 			buttongame.setVisible(true);
 			

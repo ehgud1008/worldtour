@@ -14,17 +14,22 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
 	
-		TourManager3 t = new TourManager3();
+//		TourManager3 t = new TourManager3();
+//		t.addList(new TourDB("남산", "서울", 15000, 21));
+		
+		TourManager4 t = new TourManager4();
 		t.addList(new TourDB("남산", "서울", 15000, 21));
-		t.addList(new TourDB("경복궁", "서울", 10000, 20));
-		t.printList();
-		TourDB db = new TourDB();
-		File file = new File("files/TourSite.db");
-		t.writeDB(file);
-		
-//		t.readDB(file);
-		System.out.println(t.getName());
-		
+		t.
+//		t.addList(new TourDB("남산", "서울", 15000, 21));
+//		t.addList(new TourDB("경복궁", "서울", 10000, 20));
+////		t.printList();
+//		TourDB db = new TourDB();
+//		File file = new File("files/TourSite.db");
+////		t.writeDB(file);
+//		
+////		t.readDB(file);
+////		System.out.println(t.getName());
+//		
 //		
 //		Scanner sc = new Scanner(System.in);
 //		String city = "";
