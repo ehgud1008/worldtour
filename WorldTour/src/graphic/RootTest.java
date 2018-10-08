@@ -34,7 +34,7 @@ class Window extends JFrame{
 	private JButton complete = new JButton("추가");
 	
 	public Window() {
-		this.display();
+		this.display(); //  직접적인 화면
 		this.event();
 		this.setSize(400,400);
 		this.setTitle("관리자 추가화면");

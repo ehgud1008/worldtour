@@ -1,10 +1,13 @@
 package tour;
 
+import java.io.Serializable;
+
 /**
  * 관광지의 정보를 관리
  */
-public class TourDB {
-//	private String nation;
+public class TourDB implements Serializable {
+//	private static final long serialVersionUID = 1L;
+	//	private String nation;
 	private String name; //이름
 	private String address;//주소
 	private int enterfee;//입장료
@@ -32,6 +35,41 @@ public class TourDB {
 		this.address = address;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + close;
+		result = prime * result + enterfee;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TourDB other = (TourDB) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (close != other.close)
+			return false;
+		if (enterfee != other.enterfee)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
 	/**
 	 * 데이터 전체를 입력해야하는 생성자
 	 * @param name
