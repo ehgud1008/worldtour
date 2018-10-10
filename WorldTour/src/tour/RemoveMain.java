@@ -1,5 +1,6 @@
 package tour;
 
+
 import java.util.Scanner;
 
 public class RemoveMain {
@@ -11,9 +12,12 @@ public class RemoveMain {
 //		TourManager tourmanager = new TourManager();
 //		tourmanager.removeList(name);
 //		System.out.println(tourmanager.readFile());
-		
-		TourManager manager = new TourManager();
-		manager.removeList("1");
-		System.out.println(manager.readFile());
+		Scanner input = new Scanner(System.in);
+		String name=null;
+		TourManager tourmanager = new TourManager();
+		System.out.println("삭제원하는 도시이름 입력하시오.");
+		name=input.next();
+		tourmanager.removeList(name);
+		System.out.println(tourmanager.readFile());
 	}
 }

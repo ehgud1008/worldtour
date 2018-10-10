@@ -1,6 +1,8 @@
 package tour;
 
+
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * 관광지의 정보를 관리
@@ -13,10 +15,24 @@ public class TourDB implements Serializable {
 	private int enterfee;//입장료
 //	private int season;	//선택옵션
 	private int close;//폐점시간
+	private byte[] image;
+//	private String path;
+	
+
 	//이미지
 	//주의사항들
 	
+	
+	
 	public TourDB() {}
+	public TourDB(String name, String address, int enterfee, int close, byte[] image) {
+	super();
+	this.name = name;
+	this.address = address;
+	this.enterfee = enterfee;
+	this.close = close;
+	this.image = image;
+}
 	/**
 	 * 이름만 추가하는 생성자
 	 * @param name
@@ -104,7 +120,9 @@ public class TourDB implements Serializable {
 	public void setClose(int close) {
 		this.close = close;
 	}
-	
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	
 	/**
 	 * getter
@@ -124,11 +142,16 @@ public class TourDB implements Serializable {
 	public int getClose() {
 		return close;
 	}
-	
+	public byte[] getImage() {
+		return image;
+	}
 	@Override
 	public String toString() {
-		return "TourDB [name=" + name + ", address=" + address + ", enterfee=" + enterfee + "원, close=" + close + "시]";
+		return "TourDB [name=" + name + ", address=" + address + ", enterfee=" + enterfee + ", close=" + close
+				+ "]";
 	}
+	
+	
 	
 	
 }

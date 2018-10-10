@@ -1,6 +1,16 @@
 package tour;
 
+import java.io.IOException;
 import java.util.Scanner;
+
+/**
+ * 검색, 추가, 삭제, 목록 모든 기능.
+ * 
+ * @author user
+ */
+
+
+
 
 /**
  * 검색, 추가, 삭제, 목록 모든 기능.
@@ -14,6 +24,8 @@ public class AddMain {
 		String city, address = null;
 		int enterfee, close = 0;
 		int num;
+		String path ="";
+		
 		System.out.println("*원하는 기능의 번호를 입력하세요.");
 		System.out.println("1. 장소, 주소, 입장료, 폐점시간");
 		System.out.println("2. 장소, 주소");
@@ -28,7 +40,12 @@ public class AddMain {
 			enterfee = input.nextInt();
 			System.out.println("폐점시간 입력");
 			close = input.nextInt();
-			TourDB tourdb = new TourDB(city, address, enterfee, close);
+			System.out.println("경로");
+			path = input.next();
+			byte[] a=tourmanager.BufferedImageToByteArray(path);
+			
+			
+			TourDB tourdb = new TourDB(city, address, enterfee, close, a);
 			tourmanager.addList(tourdb);
 		} else if (num == 2) {
 			System.out.println("장소 입력:");

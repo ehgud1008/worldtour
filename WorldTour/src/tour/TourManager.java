@@ -1,7 +1,9 @@
 package tour;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +13,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 public class TourManager {
 
@@ -96,12 +100,11 @@ public class TourManager {
 
 		// if(target.getName().equals(historic)) {
 		if (target != null) {
-
-			System.out.println(a);
-			System.out.println(a.contains(target));
-			System.out.println(a.remove(target));
-			System.out.println(a);
-//			saveFile(a);
+			a.remove(target);
+			// System.out.println(a);
+			// System.out.println(a.contains(target));
+			// System.out.println(a.remove(target));
+			// System.out.println(a);
 			saveFile(a);
 
 			// if (target != null) {// null값이 아닌경우에는
@@ -167,23 +170,43 @@ public class TourManager {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		TourManager manager = new TourManager();
-		
-//		manager.addList(new TourDB("숭례문", "서울", 1500, 1500));
-		List<TourDB> a = manager.readFile();
-		System.out.println(a);
-		
-		TourDB find = manager.findhistoric("1");
-		System.out.println(find);
-		
-//		System.out.println(find.equals(a.get(0)));
-		System.out.println(a.contains(find));
-		System.out.println(a.remove(find));
-		
-		manager.saveFile(a);
-		
-	}
 
+	List<String> list = new ArrayList<>(); // 사진 경로 저장 리스트
+//// 정보 사진 관리하는 메소드	
+//	public void savepic(String source) throws IOException {
+////		String targetFileName = "pic.dat";
+//		TourDB tourdb = new TourDB();
+//		int readbyteno;
+//		byte[] readbytes = new byte[100];				
+//		FileInputStream fi = new FileInputStream(path);
+////		FileOutputStream fos = new FileOutputStream(target);
+//		while ((readbyteno = fi.read(readbytes)) != -1) {
+////			fos.write(readbytes, 0, readbyteno);
+//			tourdb.setImage(readbytes);
+//		}
+////		fos.flush();fos.close();
+//	}
+
+	/**
+	 * Addpic로부터 경로를 입력 받아서, File i/o 통해서, memberDB에 저장하는 메소드
+	 * 
+	 * @return
+	 * 
+	 * @throws IOException
+	 */
+	public byte[] BufferedImageToByteArray(String filename) {
+		byte[] imagebyte = null;
+		try {
+			BufferedImage orimage = ImageIO.read(new File(filename));
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(orimage, "jpg", baos);
+			byte[] imagebytes = baos.toByteArray();
+			imagebyte = imagebytes;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return imagebyte;
+
+	}
 }

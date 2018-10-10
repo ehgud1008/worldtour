@@ -1,5 +1,7 @@
 package tour;
 
+
+
 import java.util.Scanner;
 
 public class SearchMain {
@@ -11,6 +13,6 @@ public class SearchMain {
 	name=input.next();
 	
 	TourDB a =tourmanager.findhistoric(name);
-	System.out.println(a);
+	System.out.println(a.toString());
 }
 }
