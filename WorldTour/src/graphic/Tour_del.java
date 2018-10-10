@@ -6,11 +6,11 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Tour_del extends JFrame {
+class DelWindow extends JFrame {
 	private JTextField textField;
-	public Tour_del() {
+	public DelWindow() {
 		getContentPane().setLayout(null);
-		
+		this.setSize(500, 500);
 		JLabel label = new JLabel("\uC0AD\uC81C\uD560 \uB2E8\uC5B4 \uC785\uB825 :");
 		label.setFont(new Font("±¼¸²", Font.BOLD, 20));
 		label.setBounds(12, 53, 186, 84);
@@ -27,4 +27,10 @@ public class Tour_del extends JFrame {
 		getContentPane().add(button_1);
 	}
 
+}
+public class Tour_del{
+	public static void main(String [] args) {
+		DelWindow del = new DelWindow();
+		del.setVisible(true);
+	}
 }

@@ -12,10 +12,13 @@ public class TourDB implements Serializable {
 	//	private String nation;
 	private String name; //이름
 	private String address;//주소
+	private String namelink; // 관광지 링크
 	private int enterfee;//입장료
 //	private int season;	//선택옵션
 	private int close;//폐점시간
 	private byte[] image;
+	private String foodhouse;// 맛집
+	private String foodlink;// 맛집링크
 //	private String path;
 	
 
@@ -24,15 +27,27 @@ public class TourDB implements Serializable {
 	
 	
 	
-	public TourDB() {}
-	public TourDB(String name, String address, int enterfee, int close, byte[] image) {
-	super();
-	this.name = name;
-	this.address = address;
-	this.enterfee = enterfee;
-	this.close = close;
-	this.image = image;
-}
+	public TourDB(String name, String address, String namelink, int enterfee, int close, byte[] image, String foodhouse,
+			String foodlink) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.namelink = namelink;
+		this.enterfee = enterfee;
+		this.close = close;
+		this.image = image;
+		this.foodhouse = foodhouse;
+		this.foodlink = foodlink;
+	}
+//	public TourDB() {}
+//	public TourDB(String name, String address, int enterfee, int close, byte[] image) {
+//	super();
+//	this.name = name;
+//	this.address = address;
+//	this.enterfee = enterfee;
+//	this.close = close;
+//	this.image = image;
+//}
 	/**
 	 * 이름만 추가하는 생성자
 	 * @param name
