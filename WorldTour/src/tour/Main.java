@@ -1,25 +1,26 @@
 package tour;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Scanner;
+import java.io.InputStream;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
 	
 //		TourManager3 t = new TourManager3();
 //		t.addList(new TourDB("남산", "서울", 15000, 21));
+		File image = new File("files/namsan.png");
 		
-		TourManager4 t = new TourManager4();
-		t.addList(new TourDB("남산", "서울", 15000, 21));
-		t.
+		BufferedInputStream in = new BufferedInputStream(new FileInputStream(image));
+		
+		byte[] buffer = new byte[1024*1024];
+		int check = in.read(buffer);
+		
+		
+		
 //		t.addList(new TourDB("남산", "서울", 15000, 21));
 //		t.addList(new TourDB("경복궁", "서울", 10000, 20));
 ////		t.printList();

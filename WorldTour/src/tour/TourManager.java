@@ -1,10 +1,11 @@
 package tour;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,63 +13,140 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javax.imageio.ImageIO;
 
 public class TourManager {
 
-	private List<TourDB> tourist = new ArrayList<>();
-	private File DBfile = new File("files", "TourSite.db");
-	
-	/**
-	 * ÆÄÀÏÀ» ÀĞ¾î¿À´Â ¸Ş¼Òµå
-	 * (Å¬¶óÀÌ¾ğÆ®¿¡¼­ Á¤º¸°¡ ÇÊ¿äÇÏ¸é °¡Á®¿Í¼­ Ãâ·Â)
-	 * @return
-	 */
-	public List<TourDB> openDB() {
-		List<TourDB> db ;
-		try {
-			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(DBfile)));
-			db = (List<TourDB>) in.readObject();
-			
-			in.close();
-		} catch (Exception e) {
-			db = new ArrayList<>();
+	public void addList(TourDB t) {
+		TourDB target = this.findhistoric(t.getName());
+		if (target == null) {
+			List<TourDB> a = readFile();
+			a.add(t);
+			saveFile(a);
+			System.out.println(a.size());
+		} else {
+			System.out.println("ì´ë¯¸ ëª©ë¡ì— ìˆìŠµë‹ˆë‹¤.");
 		}
-		
-		return db;
 	}
-	
-	/**
-	 * ÆÄÀÏÀ» ÀúÀåÇÏ´Â ¸Ş¼Òµå
-	 * (°ü¸®ÀÚ ÇÁ·Î±×·¥¿¡¼­ Ãß°¡¸¦ ½ÃÅ² ÈÄ ÀÌ ¸Ş¼Òµå¸¦ ½á¼­ ÀúÀå½ÃÅ´)
-	 * @param list
-	 */
-	public void save(List<TourDB> list) {
-		try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(DBfile)));){
-			out.writeObject(list);
-			System.out.println(list);
+
+	public TourDB findhistoric(String historic) {
+		List<TourDB> a = readFile();
+		TourDB target = null;
+		for (int i = 0; i < a.size(); i++) {
+			if (historic.equals(a.get(i).getName())) {
+				target = a.get(i);
+				return target;
+			}
+		}
+		return target;
+	}
+
+	public void removeList(String historic) {
+		List<TourDB> a = readFile();
+		TourDB target = this.findhistoric(historic);
+		System.out.println(target);
+		if (target != null) {
+			a.remove(target);
+			saveFile(a);
+		} else {
+			System.out.println("í•´ë‹¹ ìœ ì ì§€(ì‚­ì œ ìš”ì²­ ìœ ì ì§€)ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		}
+	}
+
+	public List<TourDB> getList() {
+		return this.readFile();
+	}
+
+	public void printList() {
+		System.out.println(readFile().toString());
+	}
+
+	private File target = new File("files/TourSite.db");
+
+	public List<TourDB> readFile() {
+		List<TourDB> list;
+		try (FileInputStream fi = new FileInputStream(target);
+				BufferedInputStream bi = new BufferedInputStream(fi);
+				ObjectInputStream oi = new ObjectInputStream(bi);) {
+			list = (List<TourDB>) oi.readObject();
 		} catch (Exception e) {
+			list = new ArrayList<>();
+		}
+		return list;
+	}
+
+	public void saveFile(List<TourDB> list) {
+		try (FileOutputStream fo = new FileOutputStream(target);
+				BufferedOutputStream bo = new BufferedOutputStream(fo);
+				ObjectOutputStream oo = new ObjectOutputStream(bo);) {
+			oo.writeObject(list);
+			System.out.println("ì €ì¥ ì™„ë£Œ!");
+		} catch (Exception e) {
+			System.out.println("ì €ì¥ ì‹¤íŒ¨~");
 			e.printStackTrace();
 		}
-	
-		//¸Ş¼Òµå ±â´ÉÀ» ½á¼­ ÀÖÀ¸¸é/ ¾øÀ¸¸éÀ» ±¸ºĞÇØ¼­ Ãß°¡ÇÒÁö ¾ÈÇÒÁö °áÁ´
-	}
-	public void addList(TourDB t) {	
-		tourist.add(t);
 	}
 
-	public void removeList(TourDB t) {
-		tourist.remove(t);
-	}
+//	public void image() {
+//		TourDB db = new TourDB();
+//		Image image = param;
+//		int width = image.getWidth(null);
+//		int height = image.getHeight(null);
+//		int [] imagePixels = new int [width * height];
+//		PixelGrabber g = new PixelGrabber(image, 0, 0, width, height, imagePixels, 0, width);
+//		try {
+//			g.grabPixels();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		BufferedImage bufImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+//		bufImage.setRGB(0, 0, width, height, imagePixels, 0, width);
+//		
+//		db.setImage(bufImage);
+//	}
+//	public void image(String path) {
+//		
+//		BufferedImage img = null;
+//		ByteArrayOutputStream byos = new ByteArrayOutputStream();
+//		try{
+//		     ImageIO.write(img , "jpg" , byos);
+//		 }catch(Exception e){e.printStackTrace();
+//		 }finally{
+//		      try {
+//				byos.close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		 }
+//		 ByteArrayInputStream byis = new ByteArrayInputStream(byos.toByteArray());
+//		
+//
+//	}
+//	
 
-	public void findList() {
-		
+	/** 
+	* Addpicë¡œë¶€í„° ê²½ë¡œë¥¼ ì…ë ¥ ë°›ì•„ì„œ, File i/o í†µí•´ì„œ, memberDBì— ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ 
+	* @return ì´ë¯¸ì§€ì˜ ë°”ì´íŠ¸ ì •ë³´
+	* @throws IOException 
+	*/ 
+	public byte[] BufferedImageToByteArray(String filename) { 
+		byte[] imagebyte = null; 
+		try { 
+			BufferedImage orimage = ImageIO.read(new File(filename)); 
+			ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+			ImageIO.write(orimage, "jpg", baos); 
+			byte[] imagebytes = baos.toByteArray(); 
+			imagebyte = imagebytes; 
+			}
+			catch (IOException e) { 
+				e.printStackTrace(); 
+			} 	
+		return imagebyte; 
 	}
 	
 	
 	
-	public void printList() {
-		System.out.println(tourist.toString());
-	}
+	
 	
 }
