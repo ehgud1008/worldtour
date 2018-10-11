@@ -112,20 +112,7 @@ public class TourManager {
 		}
 	}
 
-	public void saveImage() {
-		List<TourDB> a = readFile();
-		for(int i = 0; i < a.size(); i++) {
-			a.get(i).getImage();
-		}
-		BufferedImage image = ImageIO.read();
-        
-	}
-	
-	
-	
-	
-	
-	
+
 	
 	/**
 	 * "좋아요"를 클릭하면 1씩 올라가는 메소드
