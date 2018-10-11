@@ -20,13 +20,14 @@ public class TourDB implements Serializable {
 	private String foodhouse;// 맛집
 	private String foodlink;// 맛집링크
 //	private String path;
-	
+	public int good=0; // 좋아요 카운트
 
 	//이미지
 	//주의사항들
 	
 	
 	
+
 	public TourDB(String name, String address, String namelink, int enterfee, int close, byte[] image, String foodhouse,
 			String foodlink) {
 		super();
@@ -138,6 +139,9 @@ public class TourDB implements Serializable {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
+	public void setGood(int good) {
+		this.good = good;
+	}
 	
 	/**
 	 * getter
@@ -160,10 +164,13 @@ public class TourDB implements Serializable {
 	public byte[] getImage() {
 		return image;
 	}
+	public int getGood() {
+		return good;
+	}
+
 	@Override
 	public String toString() {
-		return "TourDB [name=" + name + ", address=" + address + ", enterfee=" + enterfee + ", close=" + close
-				+ "]";
+		return "TourDB [name=" + name + ", address=" + address + ", good=" + good + "]";
 	}
 	
 	

@@ -209,4 +209,45 @@ public class TourManager {
 		return imagebyte;
 
 	}
+
+	/**
+	 * "좋아요"를 클릭하면 1씩 올라가는 메소드
+	 */
+//	public int Goodplus(String a) {
+//		List<TourDB> b = null;
+//		int num =0;
+//		TourManager tourmanager = new TourManager();
+//		b = tourmanager.readFile();
+//		for (int i = 0; i < b.size(); i++) {
+//			if (a.equals(b.get(i).getName())) {
+//				num=b.get(i).getGood()+1;
+//				num = num + 1;
+//				return num;
+//			}
+//		}
+//		return -1;
+//	}
+	public void Goodplus(String a) {
+		List<TourDB> b = null;
+		int num = 0;
+		b = this.readFile();
+		for (int i = 0; i < b.size(); i++) {
+			if (a.equals(b.get(i).getName())) {
+				num = b.get(i).getGood() + 1;
+				b.get(i).setGood(num);
+				// return num;
+			}
+		}
+		try (FileOutputStream fo = new FileOutputStream(target);
+				BufferedOutputStream bo = new BufferedOutputStream(fo);
+				ObjectOutputStream oo = new ObjectOutputStream(bo);) {
+			oo.writeObject(b);
+			System.out.println("저장 완료 되었습니다.");
+		} catch (Exception e) {
+			System.out.println("저장 과정에서 오류가 발생했습니다.");
+			e.printStackTrace();
+		}
+		// return -1;
+	}
+
 }
