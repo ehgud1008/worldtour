@@ -3,10 +3,9 @@ package tour;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -194,21 +193,32 @@ public class TourManager {
 	 * 
 	 * @throws IOException
 	 */
-	public byte[] BufferedImageToByteArray(String filename) {
-		byte[] imagebyte = null;
-		try {
-			BufferedImage orimage = ImageIO.read(new File(filename));
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(orimage, "jpg", baos);
-			byte[] imagebytes = baos.toByteArray();
-			imagebyte = imagebytes;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return imagebyte;
-
-	}
+//	//filename : 경로
+//	public byte[] BufferedImageToByteArray(String filename) {
+//	//	File file = new File(filename); 
+//		byte[] imagebyte = null;
+//		try {
+//			BufferedImage orimage = ImageIO.read(new File(filename));
+//			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//			
+//			ImageIO.write(orimage, "jpg", baos);
+//			byte[] imagebytes = baos.toByteArray();
+//			imagebyte = imagebytes;
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return imagebyte;
+//
+//	}
+//	public BufferedImage byteArrayConvertToImageFile(byte[] a) {
+////		List<TourDB> list = readFile();
+//		ByteArrayInputStream inputStream = new ByteArrayInputStream(a);
+//		BufferedImage bufferedImage = ImageIO.read(inputStream);
+//		return bufferedImage;
+//		
+//	}
 
 	/**
 	 * "좋아요"를 클릭하면 1씩 올라가는 메소드

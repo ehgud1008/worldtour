@@ -1,10 +1,16 @@
 package tour;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+
 /**
- * 검색, 추가, 삭제, 목록 모든 기능.
+ 
  * 
  * @author user
  */
@@ -18,7 +24,7 @@ import java.util.Scanner;
  * @author user
  */
 public class AddMain {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		TourManager tourmanager = new TourManager();
 		Scanner input = new Scanner(System.in);
 		String city, address = null; // 이름, 주소
@@ -46,14 +52,13 @@ public class AddMain {
 			namelink = input.next();
 			System.out.println("경로");
 			path = input.next();
-			byte[] a=tourmanager.BufferedImageToByteArray(path);
+			File f = new File(path);
+			BufferedImage image = ImageIO.read(new FileInputStream(f));
 			System.out.println("맛집입력: ");
 			foodhouse = input.next();
 			System.out.println("맛집링크: ");
 			foodlink = input.next();
-			
-			
-			TourDB tourdb = new TourDB(city, address, namelink, enterfee, close, a, foodhouse, foodlink);
+			TourDB tourdb = new TourDB(city, address, namelink, enterfee, close, foodhouse, foodlink, image);
 			tourmanager.addList(tourdb);
 		} else if (num == 2) {
 			System.out.println("장소 입력:");
