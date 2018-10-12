@@ -40,6 +40,9 @@ class Wind extends JFrame {
 	private JLabel food_label;
 	private JLabel foodlink_label;
 	
+	private JButton like_button = new JButton("좋아요");
+	private JLabel like_label;
+
 	private ImageIcon image;
 
 	private Font info_font = new Font("", Font.BOLD, 20);
@@ -104,10 +107,9 @@ class Wind extends JFrame {
 
 						food_label = new JLabel("꼭 먹어야 하는 음식 : " + list.get(j).getFoodhouse());
 						foodlink_label = new JLabel("맛집 링크 : " + list.get(j).getFoodlink());
+						image = ImageManager.loadImage(list.get(j).getImage(), 300, 300);
+						image_label = new JLabel(image);
 						
-						
-						
-					
 						infoSetting(j);
 
 //						scroll.setBounds(0, 0, infopan.getWidth(), infopan.getHeight());
@@ -121,9 +123,11 @@ class Wind extends JFrame {
 	}
 
 	
-	public void image() {
+	public void prepareImage() {
 		
+		image_label.setIcon(image);
 	}
+	
 	public void infoSetting(int j) {
 		infopan.removeAll();
 
@@ -135,6 +139,8 @@ class Wind extends JFrame {
 		food_label.setFont(info_font);
 		foodlink_label.setFont(info_font);
 		
+		infopan.add(image_label);
+
 		
 		infopan.add(name_label);
 		infopan.add(address_label);
@@ -143,10 +149,16 @@ class Wind extends JFrame {
 		infopan.add(maplink_label);
 		infopan.add(food_label);
 		infopan.add(foodlink_label);
-		infopan.add(image_label);
+
 
 		infopan.repaint();
 		infopan.revalidate();
+
+		
+//		like_label.setBounds(20,215,800,150);
+//		like_button.setBounds();
+//		infopan.add(like_label);
+//		infopan.add(like_button);
 
 		name_label.setBounds(20, -50, 800, 150);
 		address_label.setBounds(20, -15, 800, 150);
@@ -155,12 +167,8 @@ class Wind extends JFrame {
 		maplink_label.setBounds(20, 90, 800, 150);		
 		food_label.setBounds(20, 145,800,150);
 		foodlink_label.setBounds(20, 180, 800, 150);
-//		image_label.setBounds(20,280,500,500);
-		image_label.setLocation(20,280);
-		image_label.setSize(500, 500);
-		image = ImageManager.loadImage(list.get(j).getImage(), image_label.getWidth(), image_label.getHeight());
-//		image_label = new JLabel();
-		image_label.setIcon(image);
+		image_label.setBounds(20,280,500, 500);
+//		image_label.setSize();
 
 
 		
